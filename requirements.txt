@@ -1,0 +1,14 @@
+IPython
+Pillow
+collections
+logging
+math
+matplotlib
+numpy
+opencv-python
+os
+pandas
+random
+scikit-learn
+scipy
+torch

@@ -43,20 +43,6 @@ python src/train.py
 └── README.md
 ```
 
-## Pushing to GitHub
-
-1. Create a new GitHub repository (empty, no README).
-2. Initialize and push:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: CNN-LSTM model from notebook"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
-
 ## License
 
 MIT (replace with your preferred license).

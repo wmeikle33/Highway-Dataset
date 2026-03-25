@@ -1,3 +1,24 @@
+def read_video_segment(in_path, vid_seg = None):
+    cap = cv.VideoCapture(in_path)
+    video_length = int(cap.get(cv.CAP_PROP_FRAME_COUNT)) - 1
+    frames = []
+    if cap.isOpened() and video_length > 0:
+        frame_ids = [0]
+        if vid_seg is None:
+            vid_seg = np.array([0, 0.25, 0.5, 0.75, 1])
+        else:
+            vid_seg = np.clip(vid_seg, 0, 1)
+        frame_ids = np.clip(video_length*vid_seg, 0, video_length-1).astype(int)
+        count = 0
+        success, image = cap.read()
+        print('Loaded', video_length, 'frames at', image.shape, 'resolution')
+        while success:
+            if count in frame_ids:
+                frames.append(image)
+            success, image = cap.read()
+            count += 1
+    return frames
+    
 def sparse_flow( old_frame, frame ):
     # params for ShiTomasi corner detection
     feature_params = dict( maxCorners = 100,

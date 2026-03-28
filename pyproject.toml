@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ctr-prediction"
+name = "highway-dataset"
 version = "0.1.0"
-description = "Click-through rate prediction pipeline for tabular ad data"
+description = "CNN-LSTM Model for analyzing videos of cars on the highway"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [

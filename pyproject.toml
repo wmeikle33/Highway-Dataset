@@ -1,1 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "ctr-prediction"
+version = "0.1.0"
+description = "Click-through rate prediction pipeline for tabular ad data"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "William Meikle" }
+]
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "scikit-learn>=1.3",
+  "joblib>=1.3",
+]
+
+[project.optional-dependencies]
+data = ["kaggle>=1.6"]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+  "black>=24.0",
+  "pre-commit>=3.0",
+]
+
+[project.scripts]
+ctr-train = "ctr_prediction.train:main"
+ctr-predict = "ctr_prediction.predict:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]

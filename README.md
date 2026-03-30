@@ -36,8 +36,6 @@ python src/train.py
 │   └── CNN LSTM Model-3.ipynb
 ├── src/
 │   └── train.py
-├── data/
-│   └── .gitkeep
 ├── requirements.txt
 ├── .gitignore
 └── README.md

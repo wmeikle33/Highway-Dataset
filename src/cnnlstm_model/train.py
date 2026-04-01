@@ -6,6 +6,7 @@ from .model import train_eval_save
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "train.gz"
+VALIDATION_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "val.gz"
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
 
 

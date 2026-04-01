@@ -37,13 +37,10 @@ def parse_args():
 def main():
     args = parse_args()
 
-    csv_path = Path(args.csv).expanduser().resolve()
-    model_path = Path(args.model_out)
-
-    df = load_csv(csv_path, nrows=args.nrows)
-
-    if args.label not in df.columns:
-        raise ValueError(f"Label column '{args.label}' not found in {csv_path}")
+    train_ds = HighwayVideoClips(ROOT, T=T, size=SIZE, train=True)
+    val_ds   = HighwayVideoClips(ROOT, T=T, size=SIZE, train=False)
+    train_loader = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=0)
+    val_loader   = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=0)
 
     metrics = train_eval_save(
         df=df,

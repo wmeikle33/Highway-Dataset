@@ -17,11 +17,6 @@ def main():
     model = load(args.model)
     X = load_csv(args.input)
 
-    if args.id_col in X.columns:
-        out = pd.DataFrame({args.id_col: X[args.id_col], "click": proba})
-    else:
-        out = pd.DataFrame({"click": proba})
-
     save_csv(out, args.output)
     print(f"Saved predictions to: {args.output}")
 

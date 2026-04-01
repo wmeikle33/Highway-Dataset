@@ -8,9 +8,6 @@ from .data import load_csv, save_csv
 def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="models/model.joblib")
-    ap.add_argument("--input", required=True, help="CSV with feature columns")
-    ap.add_argument("--output", default="predictions.csv")
-    ap.add_argument("--id-col", default="id", help="ID column for submission output")
     return ap.parse_args()
 
 

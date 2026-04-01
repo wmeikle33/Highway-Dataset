@@ -70,7 +70,7 @@ def evaluate(model, loader, loss_fn, device, *, return_cm: bool=False, num_class
     return avg_loss, acc
 
 def train_eval_save():
-    ROOT =  "/Users/wmeikle/Downloads/archive-2/video/" # adjust if different
+    ROOT =  ""
     T, SIZE, BATCH = 16, 112, 4
 
     train_ds = HighwayVideoClips(ROOT, T=T, size=SIZE, train=True)

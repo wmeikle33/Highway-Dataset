@@ -33,9 +33,10 @@ python src/train.py
 ```
 .
 ├── notebooks/
-│   └── CNN LSTM Model-3.ipynb
+│   └── Highway Dataset.ipynb
 ├── src/
 │   └── train.py
+│   └── test.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md

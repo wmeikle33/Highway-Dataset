@@ -22,3 +22,49 @@ class Simple3DCNN(nn.Module):
         x = self.pool(x)
         x = x.view(x.size(0), -1)
         return self.fc(x)
+
+def train_one_epoch(model, loader, opt, loss_fn, device):
+    model.train()
+    total, correct, loss_sum = 0, 0, 0.0
+    for x, y in loader:
+        x, y = x.to(device), y.to(device)
+        opt.zero_grad()
+        logits = model(x)
+        loss = loss_fn(logits, y)
+        loss.backward(); opt.step()
+        loss_sum += float(loss) * x.size(0)
+        pred = logits.argmax(1)
+        correct += (pred == y).sum().item()
+        total += x.size(0)
+    return loss_sum/total, correct/total
+
+@torch.no_grad()
+def evaluate(model, loader, loss_fn, device, *, return_cm: bool=False, num_classes: int=None):
+    model.eval()
+    total, correct, loss_sum = 0, 0, 0.0
+    cm = None
+
+    for b, (x, y) in enumerate(loader):
+        x, y = x.to(device), y.to(device)
+        logits = model(x)
+        loss = loss_fn(logits, y)
+
+        loss_sum += float(loss) * x.size(0)
+        pred = logits.argmax(1)
+        correct += (pred == y).sum().item()
+        total += x.size(0)
+
+        if return_cm:
+            # lazily init CM using first batch's num_classes if not provided
+            if cm is None:
+                K = num_classes if num_classes is not None else logits.size(1)
+                cm = torch.zeros(K, K, dtype=torch.long, device='cpu')
+            # update confusion matrix on CPU
+            for t, p in zip(y.view(-1).cpu(), pred.view(-1).cpu()):
+                cm[t.long(), p.long()] += 1
+
+    avg_loss = loss_sum / total
+    acc = correct / total
+    if return_cm:
+        return avg_loss, acc, cm.numpy()
+    return avg_loss, acc

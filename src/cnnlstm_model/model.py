@@ -70,3 +70,20 @@ def evaluate(model, loader, loss_fn, device, *, return_cm: bool=False, num_class
     return avg_loss, acc
 
 def train_eval_save():
+    ROOT =  "/Users/wmeikle/Downloads/archive-2/video/" # adjust if different
+    T, SIZE, BATCH = 16, 112, 4
+
+    train_ds = HighwayVideoClips(ROOT, T=T, size=SIZE, train=True)
+    val_ds   = HighwayVideoClips(ROOT, T=T, size=SIZE, train=False)
+    train_loader = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=0)
+    val_loader   = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=0)
+    train_ds.summarize_counts(train_ds.labels)
+
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = Simple3DCNN(num_classes=2).to(device)
+    opt = optim.Adam(model.parameters(), lr=1e-3)
+    loss_fn = nn.CrossEntropyLoss()
+
+    for epoch in range(1):
+        tr_loss, tr_acc = train_one_epoch(model, train_loader, opt, loss_fn, device)
+        va_loss, va_acc, cm = evaluate(model, val_loader, loss_fn, device, return_cm=True, num_classes=2)

@@ -16,7 +16,13 @@ def parse_args():
         default=str(DEFAULT_DATA_PATH),
         help="Path to training CSV",
     )
-    ap.add_argument("--label", default="click", help="Target column")
+
+    ap.add_argument(
+        "--valcsv",
+        default=str(DEFAULT_DATA_PATH),
+        help="Path to validation CSV",
+    )
+    
     ap.add_argument(
         "--model-out",
         default=str(DEFAULT_MODEL_PATH),
@@ -24,13 +30,7 @@ def parse_args():
     )
     ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
     ap.add_argument("--random-state", type=int, default=42)
-    ap.add_argument("--nrows", type=int, default=200000, help="Rows to load for training")
-    ap.add_argument(
-        "--model",
-        choices=["logreg", "xgb"],
-        default="logreg",
-        help="Which model to train.",
-    )
+    
     return ap.parse_args()
 
 
@@ -51,11 +51,7 @@ def main():
     )
 
     print(f"Saved model to: {model_path}")
-    print(f"log_loss={metrics['log_loss']:.6f}")
-    if "auc" in metrics:
-        print(f"auc={metrics['auc']:.6f}")
-
-
+    
 if __name__ == "__main__":
     main()
 

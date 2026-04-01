@@ -68,3 +68,5 @@ def evaluate(model, loader, loss_fn, device, *, return_cm: bool=False, num_class
     if return_cm:
         return avg_loss, acc, cm.numpy()
     return avg_loss, acc
+
+def train_eval_save():

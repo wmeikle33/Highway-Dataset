@@ -39,6 +39,7 @@ python src/train.py
 │   └── train.py
 │   └── test.py
 ├── reports/
+├── scripts/
 ├── requirements.txt
 ├── .gitignore
 └── README.md

@@ -29,7 +29,7 @@ dev = [
 
 [project.scripts]
 highway-train = "highway-dataset.train:main"
-highway-predict = "highway-dataset.train:main".predict:main"
+highway-predict = "highway-dataset.predict:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

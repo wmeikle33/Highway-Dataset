@@ -28,8 +28,8 @@ dev = [
 ]
 
 [project.scripts]
-ctr-train = "ctr_prediction.train:main"
-ctr-predict = "ctr_prediction.predict:main"
+highway-train = "highway-dataset.train:main"
+highway-predict = "highway-dataset.train:main".predict:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

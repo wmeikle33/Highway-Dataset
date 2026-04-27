@@ -35,9 +35,10 @@ python src/train.py
 .
 ├── notebooks/
 │   └── Highway Dataset.ipynb
-├── src/
+├── src/cnn-lstm
 │   └── train.py
 │   └── test.py
+├── reports/
 ├── requirements.txt
 ├── .gitignore
 └── README.md

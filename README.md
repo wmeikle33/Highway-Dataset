@@ -18,16 +18,11 @@ pip install -r requirements.txt
 pip install e.
 ```
 
-## Usage
-
-You can run the code extracted from the notebook as a script:
+## Quickstart
 
 ```bash
 python src/train.py
 ```
-
-> Note: Since this was auto-extracted from a notebook, you may want to refactor
-> any interactive parts (like display code, inline plots, or file dialogs).
 
 ## Repository Structure
 

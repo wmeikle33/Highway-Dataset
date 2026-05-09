@@ -29,6 +29,11 @@ def parse_args():
         default=str(DEFAULT_MODEL_PATH),
         help="Saved model path",
     )
+     ap.add_argument(
+        "--epochs",
+        default=1,
+        help="Number of epochs",
+    )
     ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
     ap.add_argument("--random-state", type=int, default=42)
     
@@ -46,6 +51,7 @@ def main():
     metrics = train_eval_save(
         df=df,
         label=args.label,
+        epochs = args.epochs,
         model_path=model_path,
         random_state=args.random_state,
         test_size=args.test_size,

@@ -7,7 +7,7 @@ from .data import load_csv, save_csv
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="models/model.joblib")
+    ap.add_argument("--model", default="models/model.keras")
     return ap.parse_args()
 
 

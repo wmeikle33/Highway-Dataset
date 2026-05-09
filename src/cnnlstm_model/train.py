@@ -30,6 +30,9 @@ def main():
     train_loader = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=0)
     val_loader   = DataLoader(val_ds, batch_size=BATCH, shuffle=False, num_workers=0)
 
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = Simple3DCNN(num_classes=2).to(device)
+
     metrics = train_eval_save(
         df=df,
         label=args.label,

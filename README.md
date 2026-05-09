@@ -21,7 +21,7 @@ pip install e.
 ## Quickstart
 
 ```bash
-python src/train.py
+python scripts/train.py
 ```
 
 ## Repository Structure

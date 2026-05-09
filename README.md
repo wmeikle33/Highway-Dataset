@@ -1,6 +1,6 @@
 # Highway Dataset CNN-LSTM Model
 
-This repository was generated from the notebook **CNN LSTM Model-3.ipynb**.
+This repository was generated from the notebook **CNN LSTM Model.ipynb**.
 
 It includes:
 - The original notebook under `notebooks/`

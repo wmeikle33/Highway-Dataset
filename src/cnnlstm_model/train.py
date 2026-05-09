@@ -1,41 +1,23 @@
-import argparse
-from pathlib import Path
-
 from .data import load_csv
 from .model import train_eval_save
+from pathlib import Path
+import argparse
+import torch
+from torch.utils.data import DataLoader
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "train.gz"
-VALIDATION_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "val.gz"
-DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.keras"
+from cnnlstm_model.data import HighwayVideoClips
+from cnnlstm_model.model import Simple3DCNN, train_one_epoch, evaluate
+
 
 
 def parse_args():
-    ap = argparse.ArgumentParser()
-    ap.add_argument(
-        "--csv",
-        default=str(DEFAULT_DATA_PATH),
-        help="Path to training CSV",
-    )
-
-    ap.add_argument(
-        "--valcsv",
-        default=str(DEFAULT_DATA_PATH),
-        help="Path to validation CSV",
-    )
-    
-    ap.add_argument(
-        "--model-out",
-        default=str(DEFAULT_MODEL_PATH),
-        help="Saved model path",
-    )
-     ap.add_argument(
-        "--epochs",
-        default=1,
-        help="Number of epochs",
-    )
-    ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
-    ap.add_argument("--random-state", type=int, default=42)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data-root", required=True)
+    parser.add_argument("--model-out", default="models/model.pt")
+    parser.add_argument("--epochs", type=int, default=5)
+    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--frames", type=int, default=16)
+    parser.add_argument("--size", type=int, default=112)
     
     return ap.parse_args()
 

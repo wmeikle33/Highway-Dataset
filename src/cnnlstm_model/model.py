@@ -1,3 +1,10 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+
+from cnnlstm_model.data import HighwayVideoClips
+
 class Simple3DCNN(nn.Module):
     def __init__(self, num_classes=2, in_ch=3):
         super().__init__()

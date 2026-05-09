@@ -5,5 +5,5 @@ from pathlib import Path
 class Config:
     random_state: int = 42
     artifacts_dir: Path = Path("models")
-    model_path: Path = artifacts_dir / "model.joblib"
+    model_path: Path = artifacts_dir / "models/model.keras"
     pipeline_path: Path = artifacts_dir / "pipeline.joblib"

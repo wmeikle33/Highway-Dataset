@@ -28,8 +28,8 @@ dev = [
 ]
 
 [project.scripts]
-highway-train = "highway-dataset.train:main"
-highway-predict = "highway-dataset.predict:main"
+highway-train = "cnnlstm_model.train:main"
+highway-predict = "cnnlstm_model.predict:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
